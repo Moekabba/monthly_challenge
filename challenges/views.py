@@ -30,22 +30,26 @@ month_challenges_dict = {
     "februray": "this February, your birthday month",
     "march": "this is Absa's birthday",
     "Aprill": "This when Absa mom cone",
-    "May": "Baby due date month",
-    "June": "this is June, stay focus",
-    "July": "July is when you will be good at what you do",
-    "Aguest": "baby will be 3 months Insha Allah",
-    "September": "get fit with Absa",
-    "October": "get fit and stay fit",
-    "November": "prepare to go see mom",
-    "December": "Take break, reset and go see mom"
+    "may": "Baby due date month",
+    "june": "this is June, stay focus",
+    "july": "July is when you will be good at what you do",
+    "aguest": "baby will be 3 months Insha Allah",
+    "september": "get fit with Absa",
+    "october": "get fit and stay fit",
+    "november": "prepare to go see mom",
+    "december": "Take break, reset and go see mom"
 
 }
+
 
 def monthly_challenge_by_number(request, month):
     return HttpResponse(month)
 
 
+# adding try catch to prevent failure if month is not in the dictionary
 def monthly_challenges(request, month):
-    challenge_txt = month_challenges_dict
-  
+    try:
+        challenge_txt = month_challenges_dict[month]
+    except:
+        return HttpResponseNotFound("this month is not supported in the dict")
     return HttpResponse(challenge_txt)
