@@ -25,6 +25,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 # def junindex(request):
 #     return HttpResponse("Summer time!!Every massive haffi come along Go fi your sun tan inna di summer sun If you a bleacher, go back home ")
 
+def monthly_challenge_by_number(request, month):
+    return HttpResponse(month)
+
 
 def monthly_challenges(request, month):
     challenge_txt = None
