@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from urllib import response
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 # Create your views here.
 
@@ -29,7 +29,7 @@ month_challenges_dict = {
     "january": "This january, 1st month from your dict",
     "februray": "this February, your birthday month",
     "march": "this is Absa's birthday",
-    "Aprill": "This when Absa mom cone",
+    "aprill": "This when Absa mom cone",
     "may": "Baby due date month",
     "june": "this is June, stay focus",
     "july": "July is when you will be good at what you do",
@@ -43,7 +43,13 @@ month_challenges_dict = {
 
 
 def monthly_challenge_by_number(request, month):
-    return HttpResponse(month)
+    forward_months = list(month_challenges_dict.keys())
+
+    if month > len(forward_months):
+        return HttpResponseNotFound("Invalid Month")
+        
+    redirect_month = forward_months[month -1]
+    return HttpResponseRedirect("/challenges/" + redirect_month)  # Redirect
 
 
 # adding try catch to prevent failure if month is not in the dictionary
