@@ -8,6 +8,7 @@ urlpatterns = [
     # path("april", views.aprindex),
     # path("may", views.mayindex),
     # path("june", views.junindex),
+    path("", views.index), #this empty string will trigger /chalenges, it need its view fucntion
     path("<int:month>", views.monthly_challenge_by_number),
     path("<str:month>", views.monthly_challenges, name="month_cha") #name added to use with reverse function # str: stringfy 
 ]
