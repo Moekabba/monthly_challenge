@@ -9,5 +9,5 @@ urlpatterns = [
     # path("may", views.mayindex),
     # path("june", views.junindex),
     path("<int:month>", views.monthly_challenge_by_number),
-    path("<str:month>", views.monthly_challenges) # str: stringfy 
+    path("<str:month>", views.monthly_challenges, name="month_cha") #name added to use with reverse function # str: stringfy 
 ]
